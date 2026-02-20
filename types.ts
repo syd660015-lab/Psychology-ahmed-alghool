@@ -1,57 +1,43 @@
 
-export interface GlossaryTerm {
-  termAr: string;
-  termEn: string;
-  definition: string;
-  theory: string;
-  sinaiExample: string;
-  impact: string;
-  application: string;
+export interface Message {
+  role: 'user' | 'assistant' | 'system';
+  content: string;
 }
 
-export interface CaseStudy {
-  id: string;
-  scenario: string;
-  questions: string[];
-  targetSkill: string;
-  expertAnalysis: {
-    theory: string;
-    sinaiInsight: string;
-    practicalSolution: string;
-  };
+export interface Term {
+  term: string;
+  termEn: string;
+  definition: string;
+}
+
+export interface Lecture {
+  id: number;
+  title: string;
+  description: string;
+  titleExplanation: string;
+  goals: string[];
+  keyConcepts: string[];
+  glossary: Term[];
 }
 
 export interface Question {
-  id: string;
-  unit: number;
-  question: string;
-  options: string[];
-  answer: string;
-  explanation: {
-    theory: string;
-    sinaiLink: string;
-    detailedExample: string;
-    implications: string;
-    applications: string;
-  };
-}
-
-export interface UnitData {
   id: number;
-  title: string;
-  objectives: string[];
-  weeklyPlan: { week: number; topic: string; activity: string; localExample: string }[];
-  glossary: GlossaryTerm[];
+  scenario: string;
+  options: string[];
+  correctAnswer: number;
+  explanation: string;
+}
+
+export interface LectureQuiz {
+  lectureId: number;
   questions: Question[];
-  cases: CaseStudy[];
-  scenarioMCQs: Question[];
-  assessment: { method: string; weight: number }[];
 }
 
-export enum AppState {
-  HOME = 'HOME',
-  UNIT_VIEW = 'UNIT_VIEW',
-  FULL_EXAM = 'FULL_EXAM'
+export enum AppView {
+  CHAT = 'CHAT',
+  LECTURES = 'LECTURES',
+  MEASUREMENT = 'MEASUREMENT',
+  QUIZ = 'QUIZ',
+  GLOSSARY = 'GLOSSARY',
+  GAMES = 'GAMES'
 }
-
-export type SubTab = 'INFO' | 'GLOSSARY' | 'PRACTICE' | 'CASES' | 'QUIZ';
